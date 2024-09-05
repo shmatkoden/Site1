@@ -1,3 +1,4 @@
+const HTTP = require('http');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -5,6 +6,7 @@ const paymentRoutes = require('./routes/paymentRoutes');
 
 const app = express();
 
+// Настройки Express
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -18,6 +20,13 @@ app.get('/', (req, res) => {
     res.render('payment');
 });
 
-app.listen(333, () => {
-    console.log('Server is running on port 333');
+// Создаем HTTP-сервер и передаем в него приложение Express
+const WebServer = HTTP.createServer(app);
+
+// Прослушивание порта и хоста из переменных среды
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '127.1.2.238';
+
+WebServer.listen(PORT, HOST, () => {
+    console.log(`Server is running on http://${HOST}:${PORT}`);
 });
