@@ -25,7 +25,8 @@ const WebServer = HTTP.createServer(app);
 
 // Прослушивание порта и хоста из переменных среды
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '127.1.2.238';
+const HOST = process.env.HOST || '185.70.111.248'; // Измените хост
+
 
 WebServer.listen(PORT, HOST, () => {
     console.log(`Server is running on http://${HOST}:${PORT}`);
